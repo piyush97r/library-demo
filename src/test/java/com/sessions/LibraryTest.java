@@ -1,8 +1,6 @@
 package com.sessions;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
 
@@ -14,7 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class LibraryTest {
     Library library;
 
-
+    @BeforeAll
+    public static void beforeAll(){
+        System.out.println("Before ALl");
+    }
+    @AfterAll
+    public static void afterAll(){
+        System.out.println("AfterAll");
+    }
     @BeforeEach
     public void setup(){
         library = new Library();
