@@ -2,6 +2,11 @@ package com.sessions;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItem;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
@@ -14,6 +19,18 @@ class LibraryTest {
         library.getBooks().size();
         int totalNumberOfBooks = library.getBooks().size();
         assertEquals(1,totalNumberOfBooks);
+    }
+    @Test
+    public void adding_to_catalogue_should_increase_the_size_of_books_and_id_should_be_2(){
+        Library library = new Library();
+        Book newlyCreatedBook = library.addToCatalogue("Discovery Of India","Jawaharlal Nehru",432,11.99);
+        assertEquals(2,newlyCreatedBook.getId());
+        int totalBooks = library.getBooks().size();
+
+        assertThat(totalBooks,equalTo(2) );
+
+        List<Book> availableBooks = library.getBooks();
+        assertThat(library.getBooks(),hasItem(newlyCreatedBook));
     }
 
 }
