@@ -1,5 +1,6 @@
 package com.sessions;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -31,6 +32,20 @@ class LibraryTest {
 
         List<Book> availableBooks = library.getBooks();
         assertThat(library.getBooks(),hasItem(newlyCreatedBook));
+    }
+
+    @Test
+    public void findBookByName_called_with_bookname_should_return_book_object(){
+        Library library = new Library();
+        Book book = library.findBookByName("The God Of Small Things");
+        Assertions.assertNotNull(book);
+    }
+
+    @Test
+    public void findBookByName_called_with_nonexistant_bookname_should_return_null(){
+        Library library = new Library();
+        Book book = library.findBookByName("The God of Big Things");
+        assertNull(book);
     }
 
 }
