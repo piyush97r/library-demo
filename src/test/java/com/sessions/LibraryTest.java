@@ -2,6 +2,7 @@ package com.sessions;
 
 import org.junit.jupiter.api.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -58,5 +59,15 @@ class LibraryTest {
         Book book = library.findBookByName("The God of Big Things");
         assertNull(book);
     }
+    @Test
+    public void when_returning_book_receipt_should_be_returned(){
+        RentedBook rentedBook=library.rent("The God Of Small Things");
+        Double amount=3.0;
+        Receipt receipt=library.returnBook(rentedBook,amount);
+        assertNotNull(receipt);
+        assertThat(receipt.bookName,equalTo("The God Of Small Things"));
+        assertThat(receipt.receiptDate,equalTo(LocalDate.now()));
 
+
+    }
 }
